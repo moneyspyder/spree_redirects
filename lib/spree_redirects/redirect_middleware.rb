@@ -24,7 +24,10 @@ module SpreeRedirects
         end
       end
 
-      raise routing_error if routing_error.present?
+      #raise routing_error 
+      if routing_error.present?
+        return ExceptionController.action(:show).call(env)
+      end
 
       [ status, headers, body ]
     end
